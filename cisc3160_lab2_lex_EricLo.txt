@@ -1,0 +1,14 @@
+%{
+#include <stdio.h>
+#include "y.tab.h"
+extern int yylval;
+%}
+%%
+[0-9]   {
+          yylval=atoi(yytext);
+          return NUMBER1;
+        }
+" "     return SPACEBAR1;
+L       return LAB1;
+Q       return QUIZ1;
+R       return REFLECTION1;
