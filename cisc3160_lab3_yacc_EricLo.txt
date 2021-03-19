@@ -1,0 +1,24 @@
+%{
+#include <stdio.h>
+%}
+%token NUMBER1 SPACEBAR1 LAB1 QUIZ1 REFLECTION1
+%%
+lab_quiz_reflection_total: LAB1 SPACEBAR1 NUMBER1 SPACEBAR1 NUMBER1 SPACEBAR1 NUMBER1 SPACEBAR1 NUMBER1 SPACEBAR1 NUMBER1 SPACEBAR1 QUIZ1 SPACEBAR1 NUMBER1 SPACEBAR1 NUMBER1 SPACEBAR1 NUMBER1 SPACEBAR1 NUMBER1 SPACEBAR1 NUMBER1 SPACEBAR1 REFLECTION1 SPACEBAR1 NUMBER1
+                SPACEBAR1 NUMBER1 SPACEBAR1 NUMBER1 SPACEBAR1 NUMBER1 SPACEBAR1 NUMBER1
+                 {
+                          printf("Lab: %d\n Quiz: %d\n Reflection: %d\n Total: %d\n", ($3+$5+$7+$9+$11), ($15+$17+$19+$21+$23), ($27+$29+$31+$33+$35), ($3+$5+$7+$9+$11+$15+$17+$19+$21+$23+$27+$29+$31+$33+$35));
+                 };
+%%
+main()
+{
+   return(yyparse());
+}
+yyerror(s)
+char *s;
+{
+  fprintf(stderr, "%s\n", s);
+}
+yywrap()
+{
+   return(1);
+}
